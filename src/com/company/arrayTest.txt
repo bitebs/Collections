@@ -1,0 +1,103 @@
+//Универсальное решение
+    public static int[] getSmallest(int[] arr){
+        int[] result = new int[2];
+        int first_element, second_element, arr_size = arr.length;
+
+        first_element = second_element = Integer.MAX_VALUE;
+        for (int i = 0; i < arr_size; i++) {
+            if (arr[i] < first_element) {
+                second_element = first_element;
+                first_element = arr[i];
+            } else if (arr[i] < second_element && arr[i] != first_element) second_element = arr[i];
+        }
+        result[0] = first_element;
+        result[1] = second_element;
+        return result;
+    } 
+
+
+------------------------------------------------------------------------------------------------------------------
+
+alex говорит:public static String getSmallest2(int[] arr){
+        String result;
+        int first_element, second_element, arr_size = arr.length;
+
+        first_element = second_element = Integer.MAX_VALUE;
+        for (int i = 0; i < arr_size; i++) {
+            if (arr[i] < first_element) {
+                second_element = first_element;
+                first_element = arr[i];
+            } else if (arr[i] < second_element && arr[i] != first_element) second_element = arr[i];
+        }
+        if (second_element == Integer.MAX_VALUE) result = "No second smallest element";
+        else
+           result = "The smallest number is " + first_element + " and the second smallest number is " + second_element + ".";
+
+        return result;
+    }
+-------------------------------------------------------------------------------------------
+
+public static void getSmallest3(int[] arr){
+        int first_element, second_element, arr_size = arr.length;
+
+        first_element = second_element = Integer.MAX_VALUE;
+        for (int i = 0; i < arr_size; i++) {
+            if (arr[i] < first_element) {
+                second_element = first_element;
+                first_element = arr[i];
+            } else if (arr[i] < second_element && arr[i] != first_element) second_element = arr[i];
+        }
+        if (second_element == Integer.MAX_VALUE) System.out.println("No second smallest element");
+        else
+            System.out.println("The smallest number is " + first_element + " and the second smallest number is " + second_element + ".");
+    } 
+
+----------------------------------------------------------------------------------------------------------------
+
+
+alex говорит:int arr[] = new int[]{5, 7, -8, 5, 14, 1};
+
+        System.out.println(Arrays.toString(getSmallest(arr)));
+        System.out.println(getSmallest2(arr));
+        getSmallest3(arr); 
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+class AE41Test {
+    private int arr[] = new int[]{5, 7, -8, 5, 14, 1};
+    private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private static final PrintStream originalOut = System.out;
+
+    @org.junit.jupiter.api.Test
+    void getSmallest() {
+        Assertions.assertArrayEquals(new int[]{-8,1},AE41.getSmallest(arr));
+    }
+
+    @org.junit.jupiter.api.Test
+    void getSmallest2() {
+        Assertions.assertEquals("The smallest number is -8 and the second smallest number is 1.",
+                AE41.getSmallest2(arr));
+    }
+
+    @org.junit.jupiter.api.Test
+    void getSmallest3() {
+        AE41.getSmallest3(arr);
+        Assertions.assertEquals("The smallest number is -8 and the second smallest number is 1.\r\n",
+                outContent.toString());
+        outContent.reset();
+    }
+
+    @BeforeAll
+    public static void setUpStream() {
+        System.setOut(new PrintStream(outContent));
+
+    }
+
+    @AfterAll
+    public static void restoreStream() {
+        System.setOut(originalOut);
+
+    }
+
+} 
