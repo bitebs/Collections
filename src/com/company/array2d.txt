@@ -1,0 +1,38 @@
+package com.company;
+
+import java.util.Arrays;
+
+public class Array2d {
+    public static void main(String[] args) {
+        int nrows = 3;
+        int ncols = 4;
+        int [][] arr = new int[nrows][ncols]; //строки, столбцы
+        arr[0][0] = 1;
+        for(int i=0; i<nrows; i++)
+            for(int j=0; j<ncols; j++)
+                arr[i][j] = j+1+i+ncols;
+
+            for (int i = 0; i<nrows; i++)
+        System.out.println(Arrays.toString(arr[i]));
+
+        for(int i=0; i<nrows; i++)
+            for(int j=0; j<ncols; j++)
+                arr[i][j] += 2;
+
+        for (int i = 0; i<nrows; i++)
+            System.out.println(Arrays.toString(arr[i]));
+
+        //вывести элементы в одну строку
+        for(int i=0; i<nrows; i++)
+            for(int j=0; j<ncols; j++)
+                System.out.print(arr[i][j]+" ");
+
+            //подстановочные знаки
+        boolean state = true;
+        int count = 3;
+        double temp = 36.6;
+        String s = "String";
+        System.out.printf("Погода солнечная: %b, день: %d, температура: %.2f, String: %s%n",
+                state, count, temp, s);
+    }
+}

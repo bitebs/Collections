@@ -1,0 +1,47 @@
+
+package com.company;
+
+import java.util.Stack;
+
+public class CheckBrackets {
+    public static void main(String[] args) {
+        //[2*(2+3)]
+        //(1+2*(3+4))
+        //LIFO - last in, first out - стек(stack)
+        //FIFO - first in, first out - очередь(queue)
+        //stack overflow
+        String brackets = "()[]{}";
+        String s = "[(2+3)+2+2]";
+        Stack<Character> stack = new Stack<>();
+        /*
+        s = s.replaceFirst("2", "1");
+        System.out.println(s);
+
+         */
+
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            int index = brackets.indexOf(c);
+            //System.out.println(index);
+            if (index != -1) {
+                if (index%2 == 0)//это открывающая скобка
+                    stack.push(c);//push добавляем элемент
+                else {    //это закрывающая скобка
+                    if (stack.isEmpty()){
+                        System.out.println("Error1");
+                        break;
+                    }
+                    char c2 = stack.peek();//peek смотрим чему равен элемент на вершине стека
+                    int index2 = brackets.indexOf(c2);
+                    if(index-index2==1)
+                        stack.pop();// pop удаляем элемент
+                    else System.out.println("Error2");
+                }
+
+            }
+
+        }
+        if (!stack.isEmpty()) System.out.println("Error3");
+    }
+}
