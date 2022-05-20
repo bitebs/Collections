@@ -1,0 +1,42 @@
+package com.company;
+
+public class Narcis {
+    public static void main(String[] args) {
+        System.out.println(is_narc_dec_num(370));
+    }
+
+    public static boolean is_narc_dec_num(long n){
+        if(n < 0) return false;
+
+        String str1 = Long.toString(n);
+        int x = str1.length();
+        long sum_num = 0;
+
+        for(char c : str1.toCharArray()){
+            sum_num += Math.pow(Character.digit(c, 10), x);
+        }
+        return sum_num == n;
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------
+
+package com.company;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class NarcisTest {
+
+    @Test
+    void is_narc_dec_num() {
+        int[] arr = {0,1,2,3,4,5,6,7,8,9,153,370};
+        for(int i=0; i<arr.length; i++)
+            Assertions.assertTrue(Narcis.is_narc_dec_num(arr[i]));
+        Assertions.assertTrue(Narcis.is_narc_dec_num(370));
+        Assertions.assertFalse(Narcis.is_narc_dec_num(369));
+        assertEquals(true, Narcis.is_narc_dec_num(370));
+    }
+}
